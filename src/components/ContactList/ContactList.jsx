@@ -1,10 +1,11 @@
 // import PropTypes from 'prop-types';
 import { List, Button, Item } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from 'redux/contacts/contactsSlice';
+import { deleteContact } from 'redux/operations/operations';
+import { getContacts } from 'redux/selectors';
 
 const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(getContacts);
   const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
   const normalizeValue = value => value.toLowerCase().trim();
@@ -18,7 +19,7 @@ const ContactList = () => {
           <div>
             {name}:{number}
           </div>
-          <Button type="button" onClick={() => dispatch(removeContact(id))}>
+          <Button type="button" onClick={() => dispatch(deleteContact(id))}>
             Delete
           </Button>
         </Item>

@@ -2,11 +2,12 @@
 import { nanoid } from 'nanoid';
 import { Label, Input, Button } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsSlice';
+import { addContact } from 'redux/operations/operations';
+import { getContacts } from 'redux/selectors';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = event => {
     event.preventDefault();
